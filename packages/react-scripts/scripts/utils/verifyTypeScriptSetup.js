@@ -106,6 +106,8 @@ function verifyTypeScriptSetup() {
     allowSyntheticDefaultImports: { suggested: true },
     strict: { suggested: true },
     forceConsistentCasingInFileNames: { suggested: true },
+    // TODO: Enable for v4.0 (#6936)
+    // noFallthroughCasesInSwitch: { suggested: true },
 
     // These values are required and cannot be changed by the user
     // Keep this in sync with the webpack config
@@ -126,12 +128,6 @@ function verifyTypeScriptSetup() {
       parsedValue: ts.JsxEmit.Preserve,
       value: 'preserve',
       reason: 'JSX is compiled by Babel',
-    },
-    // We do not support absolute imports, though this may come as a future
-    // enhancement
-    baseUrl: {
-      value: undefined,
-      reason: 'absolute imports are not supported (yet)',
     },
     paths: { value: undefined, reason: 'aliased imports are not supported' },
   };

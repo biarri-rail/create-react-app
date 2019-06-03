@@ -52,43 +52,55 @@ module.exports = {
     },
   },
 
-  overrides: {
-    files: ['**/*.ts', '**/*.tsx'],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-      ecmaVersion: 2018,
-      sourceType: 'module',
-      ecmaFeatures: {
-        jsx: true,
-      },
-
-      // typescript-eslint specific options
-      warnOnUnsupportedTypeScriptVersion: true,
-    },
-    plugins: ['@typescript-eslint'],
-    // If adding a typescript-eslint version of an existing ESLint rule,
-    // make sure to disable the ESLint rule here.
-    rules: {
-      // TypeScript's `noFallthroughCasesInSwitch` option is more robust (#6906)
-      'default-case': 'off',
-
-      // Add TypeScript specific rules (and turn off ESLint equivalents)
-      '@typescript-eslint/no-angle-bracket-type-assertion': 'warn',
-      'no-array-constructor': 'off',
-      '@typescript-eslint/no-array-constructor': 'warn',
-      '@typescript-eslint/no-namespace': 'error',
-      'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        {
-          args: 'none',
-          ignoreRestSiblings: true,
+  overrides: [
+    {
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
         },
-      ],
-      'no-useless-constructor': 'off',
-      '@typescript-eslint/no-useless-constructor': 'warn',
+
+        // typescript-eslint specific options
+        warnOnUnsupportedTypeScriptVersion: true,
+      },
+      plugins: ['@typescript-eslint'],
+      // If adding a typescript-eslint version of an existing ESLint rule,
+      // make sure to disable the ESLint rule here.
+      rules: {
+        // TypeScript's `noFallthroughCasesInSwitch` option is more robust (#6906)
+        'default-case': 'off',
+
+        // Add TypeScript specific rules (and turn off ESLint equivalents)
+        '@typescript-eslint/no-angle-bracket-type-assertion': 'warn',
+        'no-array-constructor': 'off',
+        '@typescript-eslint/no-array-constructor': 'warn',
+        '@typescript-eslint/no-namespace': 'error',
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': [
+          'warn',
+          {
+            args: 'none',
+            ignoreRestSiblings: true,
+          },
+        ],
+        'no-useless-constructor': 'off',
+        '@typescript-eslint/no-useless-constructor': 'warn',
+      },
     },
-  },
+    {
+      files: ['**/*.worker.js', '**/*.worker.mjs', '**/*.worker.ts'],
+      rules: {
+        'no-restricted-globals': ['error'].concat(
+          restrictedGlobals.filter(g => g !== 'self')
+        ),
+        // Necessary to allow stubbed class declartions in typescript workers
+        'no-useless-constructor': 'off',
+      },
+    },
+  ],
 
   // NOTE: When adding rules here, you need to make sure they are compatible with
   // `typescript-eslint`, as some rules such as `no-array-constructor` aren't compatible.

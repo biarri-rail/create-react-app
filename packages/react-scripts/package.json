@@ -1,6 +1,6 @@
 {
-  "name": "react-scripts",
-  "version": "3.0.0",
+  "name": "@biarri-rail/react-scripts",
+  "version": "3.0.0-1",
   "description": "Configuration and scripts for Create React App.",
   "repository": {
     "type": "git",
@@ -43,7 +43,7 @@
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
     "eslint": "^5.16.0",
-    "eslint-config-react-app": "^4.0.0",
+    "@biarri-rail/eslint-config-react-app": "^4.0.0",
     "eslint-loader": "2.1.2",
     "eslint-plugin-flowtype": "2.50.1",
     "eslint-plugin-import": "2.16.0",
@@ -79,7 +79,8 @@
     "webpack": "4.29.6",
     "webpack-dev-server": "3.2.1",
     "webpack-manifest-plugin": "2.0.4",
-    "workbox-webpack-plugin": "4.2.0"
+    "workbox-webpack-plugin": "4.2.0",
+    "worker-loader": "^2.0.0"
   },
   "devDependencies": {
     "react": "^16.8.4",
